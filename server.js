@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { sequelize } = require('./models');
+const initDatabase = require('./initDatabase'); 
 
 const personneRoutes = require('./routes/personneRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const listeSouhaitsRoutes = require('./routes/ListeSouhaitsRoutes');
-const messageRoutes = require('./routes/messagesRoutes')
+const messageRoutes = require('./routes/messagesRoutes');
 const participationRoutes = require('./routes/participationRoutes');
 
 require('dotenv').config();
@@ -20,19 +21,13 @@ app.use(bodyParser.json());
 app.use('/api/personnes', personneRoutes);
 app.use('/api/listes', listeSouhaitsRoutes);
 app.use('/api/events', eventRoutes);
-app.use('/api/messages', messageRoutes)
+app.use('/api/messages', messageRoutes);
 app.use('/api/participations', participationRoutes);
 
-// Tester la connexion à la base de données
-sequelize.authenticate()
-    .then(() => {
-        console.log('Connexion à la base de données réussie.');
-    })
-    .catch(err => {
-        console.error('Impossible de se connecter à la base de données:', err);
-    });
-
-// Démarrer le serveur
-app.listen(PORT, () => {
-    console.log(`Serveur en cours d'exécution sur le port ${PORT}`);
+// Initialisation de la base de données
+initDatabase().then(() => {
+  
+  app.listen(PORT, () => {
+    console.log(`🚀 Serveur en cours d'exécution sur le port ${PORT}`);
+  });
 });
