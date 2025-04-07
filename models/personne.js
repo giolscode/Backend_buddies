@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    profile: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false
     }
