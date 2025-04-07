@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     style_of_music: DataTypes.STRING,
     description: DataTypes.TEXT,
     restauration: DataTypes.BOOLEAN,
+    image: DataTypes.TEXT,
     type: DataTypes.STRING
   });
 
