@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     restauration: DataTypes.BOOLEAN,
     image: DataTypes.TEXT,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    date: DataTypes.DATE
   });
 
   Event.associate = models => {
