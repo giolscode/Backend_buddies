@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     image: {
-      type: DataTypes.String
+      type: DataTypes.STRING
     }
   }, {
     tableName: 'Personnes',
