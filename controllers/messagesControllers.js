@@ -1,4 +1,4 @@
-const { Message } = require('../models');
+const { Message, Personne } = require('../models');
 
 exports.createMessage =  async (req, res) => {
     try {
@@ -11,7 +11,15 @@ exports.createMessage =  async (req, res) => {
 
 exports.findAllMessage = async (req,res) => {
     try {
-        const message = await Message.findAll();
+        const message = await Message.findAll({
+            where: {personne_id, event_id},
+            include: [
+                {
+                    model: Personne,
+                    attributes: ['image'],
+                },
+            ]
+        });
         res.status(200).json(message);
     } catch (error) {
         res.status(400).json({message : error.message});
