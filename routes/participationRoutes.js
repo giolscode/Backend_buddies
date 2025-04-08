@@ -5,6 +5,9 @@ const participationController = require('../controllers/participationController'
 // Route pour créer une participation
 router.post('/', participationController.createParticipation);
 
+// Route pour récupérer toutes les participations
+router.get('/', participationController.getAllParticipations);
+
 // Route pour récupérer une participation par ID
 router.get('/:id', participationController.getParticipation);
 

@@ -1,4 +1,4 @@
-const { Participation } = require('../models');
+const { Participation, Event} = require('../models');
 
 exports.createParticipation = async (req, res) => {
     try {
@@ -19,6 +19,15 @@ exports.getParticipation = async (req, res) => {
         }
     } catch (error) {
         res.status(400).json({ error: error.message });
+    }
+};
+
+exports.getAllParticipations = async (req,res) => {
+    try {
+        const participations = await Participation.findAll();
+        res.status(200).json(participations);
+    } catch (error) {
+        res.status(400).json({message : error.message});
     }
 };
 
