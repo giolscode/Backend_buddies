@@ -17,4 +17,7 @@ router.patch('/:id', participationController.updateParticipation);
 // Route pour supprimer une participation
 router.delete('/:id', participationController.deleteParticipation);
 
+// Route pour supprimer toutes les participations
+router.delete('/', participationController.deleteAll);
+
 module.exports = router;

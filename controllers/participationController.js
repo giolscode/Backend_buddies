@@ -58,3 +58,16 @@ exports.deleteParticipation = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+exports.deleteAll = async (req, res) => {
+    try {
+        await Participation.destroy({
+            where: {},
+            truncate: true,
+        });
+        res.status(200).json({ message: 'Toutes les participations ont été supprimées.' });
+    } catch (error) {
+        console.error('Erreur lors de la suppression des participations :', error);
+        res.status(500).json({ error: 'Erreur serveur lors de la suppression.' });
+    }
+};
