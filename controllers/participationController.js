@@ -71,3 +71,19 @@ exports.deleteAll = async (req, res) => {
         res.status(500).json({ error: 'Erreur serveur lors de la suppression.' });
     }
 };
+
+exports.getAllParticipationsWithEventInfo = async (req, res) => {
+    try {
+        const participations = await Participation.findAll({
+            include: [
+                {
+                    model: Event,
+                    attributes: ['id', 'name', 'location', 'style_of_music', 'description', 'restauration', 'image', 'type', 'date']
+                }
+            ]
+        });
+        res.status(200).json(participations);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
