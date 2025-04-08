@@ -1,12 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
-    personne_id: DataTypes.INTEGER,
+    personne_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Personnes',
+        key: 'id',
+      },
+    },
     event_id: DataTypes.INTEGER,
     message: DataTypes.TEXT,
     date_envoi: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
+      defaultValue: DataTypes.NOW,
+    },
   });
 
   Message.associate = models => {
