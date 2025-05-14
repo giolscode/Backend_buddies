@@ -2,6 +2,19 @@ const { Participation, Event} = require('../models');
 
 exports.createParticipation = async (req, res) => {
     try {
+        const { personne_id, event_id } = req.body;
+
+        const existingParticipation = await Participation.findOne({
+            where: {
+                personne_id,
+                event_id
+            }
+        });
+
+        if (existingParticipation) {
+            return res.status(409).json({ message: 'La participation existe déjà pour cet événement.' });
+        }
+
         const participation = await Participation.create(req.body);
         res.status(201).json(participation);
     } catch (error) {
